@@ -11,18 +11,32 @@
     --good:#1a9e6b; --good-soft:#e9f7f1; --warn:#c9820c; --warn-soft:#fbf3e4;
   }
   *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:28px 20px 64px}
+  /* 导航栏 */
+  nav.top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);box-shadow:0 1px 4px rgba(20,30,50,.05)}
+  nav.top .nav-inner{max-width:1080px;margin:0 auto;padding:0 20px;display:flex;gap:6px;align-items:center;overflow-x:auto}
+  nav.top a.nav-link{display:inline-flex;align-items:center;gap:6px;padding:14px 14px;font-size:14px;font-weight:600;color:var(--sub);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+  nav.top a.nav-link:hover{color:var(--brand)}
+  nav.top a.nav-link.on{color:var(--brand);border-bottom-color:var(--brand)}
+  nav.top a.nav-link .dot{width:6px;height:6px;border-radius:50%;background:var(--brand);flex:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 20px 64px}
   header.site{border-bottom:2px solid var(--line);padding-bottom:20px;margin-bottom:26px}
   header.site h1{font-size:26px;letter-spacing:.5px;font-weight:700}
   header.site .sub{color:var(--sub);font-size:14px;margin-top:8px}
   .meta-bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
   .pill{font-size:12px;padding:4px 11px;border-radius:999px;background:var(--brand-soft);color:var(--brand);font-weight:600}
   .pill.gray{background:#eff1f5;color:var(--sub)}
-  section.block{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:24px;box-shadow:0 1px 2px rgba(20,30,50,.03)}
+  section.block{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:24px;box-shadow:0 1px 2px rgba(20,30,50,.03);scroll-margin-top:66px}
   section.block h2{font-size:19px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:4px}
   section.block h2 .idx{display:inline-flex;width:26px;height:26px;border-radius:8px;background:var(--brand);color:#fff;font-size:14px;align-items:center;justify-content:center;flex:none}
   section.block .desc{color:var(--sub);font-size:13px;margin-bottom:18px}
+  /* 游戏图标 */
+  .gcell{display:flex;align-items:center;gap:9px;min-width:150px}
+  .gcell img{width:32px;height:32px;border-radius:8px;background:#eef1f6;object-fit:cover;flex:none;border:1px solid var(--line)}
+  .gcell .fb{display:none;width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#3a5af0,#8a5cf0);color:#fff;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex:none}
+  .gcell .fb.show{display:flex}
+  .gcell span{font-weight:600}
   /* 简报卡片 */
   .brief-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .brief{background:#fbfbfd;border:1px solid var(--line);border-radius:12px;padding:16px}
@@ -32,10 +46,10 @@
   .brief .why{font-size:13px;color:var(--good);margin-bottom:8px}
   .brief a{font-size:12.5px;color:var(--brand);text-decoration:none;word-break:break-all}
   .brief a:hover{text-decoration:underline}
-  /* 新面孔表 */
+  /* 表格 */
   table{width:100%;border-collapse:collapse;font-size:13.5px}
   th{text-align:left;font-weight:600;color:var(--sub);font-size:12px;padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
-  td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
   tr:last-child td{border-bottom:none}
   .rank{display:inline-flex;min-width:34px;height:22px;align-items:center;justify-content:center;border-radius:6px;background:#f0f2f7;color:var(--ink);font-weight:700;font-size:12.5px}
   .rank.first{background:var(--accent-soft);color:var(--accent)}
@@ -44,19 +58,21 @@
   .comment{font-size:13px}
   .subhead{font-size:14px;font-weight:700;margin:18px 0 8px;color:var(--ink)}
   .subhead .num{color:var(--brand);font-size:13px;font-weight:700;background:var(--brand-soft);padding:1px 8px;border-radius:6px;margin-left:6px}
-  /* 素材榜 */
   .mat-group{margin-bottom:18px}
   .mat-group h4{font-size:14px;font-weight:700;margin-bottom:8px;padding-left:10px;border-left:3px solid var(--brand)}
-  .seg-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-  .seg-tab{font-size:12.5px;padding:6px 14px;border-radius:8px;border:1px solid var(--line);background:#fbfbfd;color:var(--sub);cursor:pointer;font-weight:600}
-  .seg-tab.on{background:var(--brand);color:#fff;border-color:var(--brand)}
   .grade{font-weight:700;color:var(--brand)}
-  .up{color:var(--accent);font-weight:600}
   footer{padding-top:16px;color:var(--sub);font-size:12.5px;text-align:center;border-top:1px solid var(--line);margin-top:8px}
-  @media(max-width:720px){.brief-grid{grid-template-columns:1fr} .wrap{padding:18px 12px 48px} section.block{padding:18px 14px} table{font-size:12.5px}}
+  @media(max-width:720px){.brief-grid{grid-template-columns:1fr} .wrap{padding:18px 12px 48px} section.block{padding:18px 14px} table{font-size:12.5px} .gcell{min-width:130px}}
 </style>
 </head>
 <body>
+<nav class="top">
+  <div class="nav-inner">
+    <a class="nav-link on" href="#brief"><span class="dot"></span>每日简报</a>
+    <a class="nav-link" href="#newfaces"><span class="dot"></span>最近 7 天新面孔</a>
+    <a class="nav-link" href="#materials"><span class="dot"></span>广告素材榜（按品类）</a>
+  </div>
+</nav>
 <div class="wrap">
   <header class="site">
     <h1>🎮 游戏市场每日简报</h1>
@@ -69,7 +85,7 @@
   </header>
 
   <!-- 一、每日简报 -->
-  <section class="block">
+  <section class="block" id="brief">
     <h2><span class="idx">1</span>每日简报</h2>
     <div class="desc">过去 24 小时新文章 + 各畅销榜变化（中度休闲方向），最多 8 条。</div>
     <div class="brief-grid">
@@ -142,7 +158,7 @@
   </section>
 
   <!-- 二、最近7天新面孔 -->
-  <section class="block">
+  <section class="block" id="newfaces">
     <h2><span class="idx">2</span>最近 7 天新面孔</h2>
     <div class="desc">抖音 / 微信小游戏畅销榜，对比 11-17 与最新一期（11-23 / 11-24），列出新进榜游戏、当前名次、开发商与一句话看点。</div>
 
@@ -150,23 +166,23 @@
     <table>
       <thead><tr><th>名次</th><th>游戏</th><th>品类</th><th>开发商</th><th>一句话看点</th></tr></thead>
       <tbody>
-        <tr><td><span class="rank first">24</span></td><td>我在古代有座城</td><td class="cate">武侠/经营</td><td>海南臻友网络</td><td class="comment">首次新进即第24名，经营类新游起势最猛。</td></tr>
-        <tr><td><span class="rank">41</span></td><td>仙临九界</td><td class="cate">角色/卡牌</td><td>深圳盟趣科技</td><td class="comment">卡牌新游，7天前未见榜。</td></tr>
-        <tr><td><span class="rank">57</span></td><td>暴走植物园</td><td class="cate">休闲/塔防</td><td>广州米娅</td><td class="comment">休闲塔防，微信/抖音双端本周同现。</td></tr>
-        <tr><td><span class="rank">64</span></td><td>御龙主宰</td><td class="cate">传奇/MMORPG</td><td>杭州百放网络</td><td class="comment">传奇向 MMORPG 新进。</td></tr>
-        <tr><td><span class="rank again">69</span></td><td>希望消不灭游戏软件V1.0</td><td class="cate">仙侠/放置</td><td>广州乐霆科技</td><td class="comment">再次新进，放置向回流。</td></tr>
-        <tr><td><span class="rank">71</span></td><td>超能下蛋鸭</td><td class="cate">魔幻/卡牌</td><td>波克</td><td class="comment">波克系卡牌新面孔。</td></tr>
-        <tr><td><span class="rank again">74</span></td><td>最强斗王</td><td class="cate">动漫/卡牌</td><td>广州乐玩</td><td class="comment">动漫卡牌再次入榜。</td></tr>
-        <tr><td><span class="rank">77</span></td><td>遗弃之地</td><td class="cate">魔幻/塔防</td><td>北京豪腾</td><td class="comment">塔防新进，微信/抖音双端在榜。</td></tr>
-        <tr><td><span class="rank">78</span></td><td>心跳陷落</td><td class="cate">二次元/女性</td><td>苏州好玩友</td><td class="comment">女性向二次元新面孔。</td></tr>
-        <tr><td><span class="rank again">84</span></td><td>剑侠世界：起源</td><td class="cate">武侠/MMORPG</td><td>西山居</td><td class="comment">西山居武侠端游 IP 小游戏版回榜。</td></tr>
-        <tr><td><span class="rank">86</span></td><td>勇者联盟</td><td class="cate">魔幻/放置</td><td>4.4k</td><td class="comment">放置新进。</td></tr>
-        <tr><td><span class="rank">90</span></td><td>迷雾大陆</td><td class="cate">魔幻/MMORPG</td><td>北京豪腾</td><td class="comment">豪腾 MMORPG 新进。</td></tr>
-        <tr><td><span class="rank again">93</span></td><td>玄渊九歌</td><td class="cate">角色/MMO</td><td>广州游星</td><td class="comment">MMO 再次入榜。</td></tr>
-        <tr><td><span class="rank again">94</span></td><td>财神十三张</td><td class="cate">现代/扑克</td><td>上海黑布林数码</td><td class="comment">扑克类回榜。</td></tr>
-        <tr><td><span class="rank">96</span></td><td>三国：谋定天下</td><td class="cate">三国/策略</td><td>北京b站-三议</td><td class="comment">三国策略新进。</td></tr>
-        <tr><td><span class="rank">97</span></td><td>飞剑连诀</td><td class="cate">武侠/文字MUD</td><td>广州云山意象</td><td class="comment">文字 MUD 细分新面孔。</td></tr>
-        <tr><td><span class="rank again">100</span></td><td>几何王国</td><td class="cate">魔幻/卡牌</td><td>广州乐玩</td><td class="comment">尾部新进，卡牌向。</td></tr>
+        <tr><td><span class="rank first">24</span></td><td><div class="gcell"><div class="fb show">我</div><span>我在古代有座城</span></div></td><td class="cate">武侠/经营</td><td>海南臻友网络</td><td class="comment">首次新进即第24名，经营类新游起势最猛。</td></tr>
+        <tr><td><span class="rank">41</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34966825" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">仙</div><span>仙临九界</span></div></td><td class="cate">角色/卡牌</td><td>深圳盟趣科技</td><td class="comment">卡牌新游，7天前未见榜。</td></tr>
+        <tr><td><span class="rank">57</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34963636" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">暴</div><span>暴走植物园</span></div></td><td class="cate">休闲/塔防</td><td>广州米娅</td><td class="comment">休闲塔防，微信/抖音双端本周同现。</td></tr>
+        <tr><td><span class="rank">64</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34966765" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">御</div><span>御龙主宰</span></div></td><td class="cate">传奇/MMORPG</td><td>杭州百放网络</td><td class="comment">传奇向 MMORPG 新进。</td></tr>
+        <tr><td><span class="rank again">69</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34965472" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">希</div><span>希望消不灭游戏软件V1.0</span></div></td><td class="cate">仙侠/放置</td><td>广州乐霆科技</td><td class="comment">再次新进，放置向回流。</td></tr>
+        <tr><td><span class="rank">71</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34816042" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">超</div><span>超能下蛋鸭</span></div></td><td class="cate">魔幻/卡牌</td><td>波克</td><td class="comment">波克系卡牌新面孔。</td></tr>
+        <tr><td><span class="rank again">74</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34819453" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">最</div><span>最强斗王</span></div></td><td class="cate">动漫/卡牌</td><td>广州乐玩</td><td class="comment">动漫卡牌再次入榜。</td></tr>
+        <tr><td><span class="rank">77</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34821231" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">遗</div><span>遗弃之地</span></div></td><td class="cate">魔幻/塔防</td><td>北京豪腾</td><td class="comment">塔防新进，微信/抖音双端在榜。</td></tr>
+        <tr><td><span class="rank">78</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34953224" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">心</div><span>心跳陷落</span></div></td><td class="cate">二次元/女性</td><td>苏州好玩友</td><td class="comment">女性向二次元新面孔。</td></tr>
+        <tr><td><span class="rank again">84</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34820099" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">剑</div><span>剑侠世界：起源</span></div></td><td class="cate">武侠/MMORPG</td><td>西山居</td><td class="comment">西山居武侠端游 IP 小游戏版回榜。</td></tr>
+        <tr><td><span class="rank">86</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34813221" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">勇</div><span>勇者联盟</span></div></td><td class="cate">魔幻/放置</td><td>4.4k</td><td class="comment">放置新进。</td></tr>
+        <tr><td><span class="rank">90</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34632446" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">迷</div><span>迷雾大陆</span></div></td><td class="cate">魔幻/MMORPG</td><td>北京豪腾</td><td class="comment">豪腾 MMORPG 新进。</td></tr>
+        <tr><td><span class="rank again">93</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34966274" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">玄</div><span>玄渊九歌</span></div></td><td class="cate">角色/MMO</td><td>广州游星</td><td class="comment">MMO 再次入榜。</td></tr>
+        <tr><td><span class="rank again">94</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34602378" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">财</div><span>财神十三张</span></div></td><td class="cate">现代/扑克</td><td>上海黑布林数码</td><td class="comment">扑克类回榜。</td></tr>
+        <tr><td><span class="rank">96</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34815526" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">三</div><span>三国：谋定天下</span></div></td><td class="cate">三国/策略</td><td>北京b站-三议</td><td class="comment">三国策略新进。</td></tr>
+        <tr><td><span class="rank">97</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34966902" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">飞</div><span>飞剑连诀</span></div></td><td class="cate">武侠/文字MUD</td><td>广州云山意象</td><td class="comment">文字 MUD 细分新面孔。</td></tr>
+        <tr><td><span class="rank again">100</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=wx_minigame&app=34592382" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">几</div><span>几何王国</span></div></td><td class="cate">魔幻/卡牌</td><td>广州乐玩</td><td class="comment">尾部新进，卡牌向。</td></tr>
       </tbody>
     </table>
 
@@ -174,46 +190,45 @@
     <table>
       <thead><tr><th>名次</th><th>游戏</th><th>品类</th><th>开发商</th><th>一句话看点</th></tr></thead>
       <tbody>
-        <tr><td><span class="rank">49</span></td><td>暴走植物园</td><td class="cate">休闲/塔防</td><td>广州米娅</td><td class="comment">休闲塔防，抖音/微信双端本周新进。</td></tr>
-        <tr><td><span class="rank again">65</span></td><td>全境守卫</td><td class="cate">战争/策略</td><td>龙蛋岛</td><td class="comment">战争策略再次入榜。</td></tr>
-        <tr><td><span class="rank">88</span></td><td>最强小队</td><td class="cate">回合战斗</td><td>海南祺曜互动</td><td class="comment">回合战斗新面孔。</td></tr>
-        <tr><td><span class="rank">109</span></td><td>魔龙争霸</td><td class="cate">MMO</td><td>广州百悦网络</td><td class="comment">MMO 新进，单日 ↑48。</td></tr>
-        <tr><td><span class="rank">118</span></td><td>脑洞玩梗赛</td><td class="cate">益智</td><td>苏州橙美</td><td class="comment">益智新进。</td></tr>
-        <tr><td><span class="rank first">123</span></td><td>模拟企业家</td><td class="cate">经营</td><td>海南简晨科技</td><td class="comment">首次新进，经营模拟向。</td></tr>
-        <tr><td><span class="rank">137</span></td><td>方舟之旅</td><td class="cate">放置挂机</td><td>海南梦境科技</td><td class="comment">放置新进，单日 ↑44。</td></tr>
-        <tr><td><span class="rank">138</span></td><td>三国志幻想大陆</td><td class="cate">三国/卡牌</td><td>广州龙畅网络</td><td class="comment">三国卡牌新面孔。</td></tr>
-        <tr><td><span class="rank">139</span></td><td>闪电冲线</td><td class="cate">回合战斗</td><td>成都星澜创智</td><td class="comment">回合战斗新进。</td></tr>
-        <tr><td><span class="rank again">140</span></td><td>零日指令</td><td class="cate">仙侠/经营</td><td>广州云山意象</td><td class="comment">仙侠经营再次入榜。</td></tr>
-        <tr><td><span class="rank again">145</span></td><td>雷霆烈焰</td><td class="cate">传奇/MMORPG</td><td>玩心</td><td class="comment">传奇 MMORPG 回榜。</td></tr>
-        <tr><td><span class="rank">152</span></td><td>全民爆梗王</td><td class="cate">益智</td><td>广州双百</td><td class="comment">益智新进。</td></tr>
-        <tr><td><span class="rank">153</span></td><td>单挑排球</td><td class="cate">—</td><td>武汉爱物极物</td><td class="comment">体育向新面孔。</td></tr>
-        <tr><td><span class="rank again">157</span></td><td>无厘头大挑战</td><td class="cate">益智</td><td>广州双百</td><td class="comment">益智回榜。</td></tr>
-        <tr><td><span class="rank">162</span></td><td>经营流水线</td><td class="cate">休闲</td><td>海南简晨科技</td><td class="comment">经营休闲新进。</td></tr>
-        <tr><td><span class="rank">163</span></td><td>逍遥志</td><td class="cate">仙侠/放置</td><td>上海呦鹿网络</td><td class="comment">仙侠放置新面孔。</td></tr>
-        <tr><td><span class="rank">166</span></td><td>斗破苍穹：斗帝之路</td><td class="cate">仙侠/动作</td><td>三七集团</td><td class="comment">IP 动作新进，抖音侧新榜。</td></tr>
-        <tr><td><span class="rank again">171</span></td><td>时光杂货店</td><td class="cate">经营</td><td>三七集团</td><td class="comment">三七经营向回榜。</td></tr>
-        <tr><td><span class="rank again">172</span></td><td>熹妃传</td><td class="cate">宫廷/卡牌</td><td>苏州好玩友</td><td class="comment">宫廷女性向回榜。</td></tr>
-        <tr><td><span class="rank again">173</span></td><td>脑子挺好的</td><td class="cate">益智</td><td>武汉市掌上乐玩</td><td class="comment">益智回榜。</td></tr>
-        <tr><td><span class="rank first">174</span></td><td>小镇派对</td><td class="cate">二合</td><td>上海趣滋滋</td><td class="comment">首次新进，二合细分新供给。</td></tr>
-        <tr><td><span class="rank again">175</span></td><td>古龙群侠录</td><td class="cate">武侠/回合制</td><td>恺英网络</td><td class="comment">武侠 IP 回合制回榜。</td></tr>
-        <tr><td><span class="rank first">178</span></td><td>我要考眼力</td><td class="cate">—</td><td>上海密幂科技</td><td class="comment">首次新进，找茬/眼力向。</td></tr>
-        <tr><td><span class="rank again">182</span></td><td>咻咻大冒险</td><td class="cate">仙侠/放置</td><td>江西菲凯</td><td class="comment">放置回榜。</td></tr>
-        <tr><td><span class="rank">184</span></td><td>小岛有晴天</td><td class="cate">—</td><td>微派</td><td class="comment">微派系新面孔。</td></tr>
-        <tr><td><span class="rank again">187</span></td><td>梦幻旅行</td><td class="cate">二合</td><td>柠檬微趣</td><td class="comment">柠檬微趣二合回榜。</td></tr>
-        <tr><td><span class="rank">188</span></td><td>战备小队</td><td class="cate">—</td><td>长沙湘辰互动</td><td class="comment">新面孔。</td></tr>
-        <tr><td><span class="rank again">190</span></td><td>三国：天下归心</td><td class="cate">三国/策略</td><td>上饶越昶网络</td><td class="comment">三国策略回榜。</td></tr>
-        <tr><td><span class="rank">193</span></td><td>我来养你</td><td class="cate">消除</td><td>北京途悦科技</td><td class="comment">消除新进。</td></tr>
-        <tr><td><span class="rank">194</span></td><td>主宰世界</td><td class="cate">仙侠/放置</td><td>4399系</td><td class="comment">放置新面孔。</td></tr>
-        <tr><td><span class="rank again">196</span></td><td>全民烧脑大师</td><td class="cate">益智</td><td>广州小贝科技</td><td class="comment">益智回榜。</td></tr>
-        <tr><td><span class="rank">197</span></td><td>解个毛线</td><td class="cate">消除</td><td>广州池骋网络</td><td class="comment">消除新进。</td></tr>
-        <tr><td><span class="rank">198</span></td><td>援军来了</td><td class="cate">战争/塔防</td><td>上海炎魔网络</td><td class="comment">塔防新面孔。</td></tr>
-        <tr><td><span class="rank">199</span></td><td>怪兽盟约</td><td class="cate">仙侠/塔防</td><td>深圳游世界</td><td class="comment">塔防新面孔。</td></tr>
+        <tr><td><span class="rank">49</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34966714" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">暴</div><span>暴走植物园</span></div></td><td class="cate">休闲/塔防</td><td>广州米娅</td><td class="comment">休闲塔防，抖音/微信双端本周新进。</td></tr>
+        <tr><td><span class="rank again">65</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34814615" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">全</div><span>全境守卫</span></div></td><td class="cate">战争/策略</td><td>龙蛋岛</td><td class="comment">战争策略再次入榜。</td></tr>
+        <tr><td><span class="rank">88</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34966766" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">最</div><span>最强小队</span></div></td><td class="cate">回合战斗</td><td>海南祺曜互动</td><td class="comment">回合战斗新面孔。</td></tr>
+        <tr><td><span class="rank">109</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34966737" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">魔</div><span>魔龙争霸</span></div></td><td class="cate">MMO</td><td>广州百悦网络</td><td class="comment">MMO 新进，单日 ↑48。</td></tr>
+        <tr><td><span class="rank">118</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34823006" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">脑</div><span>脑洞玩梗赛</span></div></td><td class="cate">益智</td><td>苏州橙美</td><td class="comment">益智新进。</td></tr>
+        <tr><td><span class="rank first">123</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34892894" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">模</div><span>模拟企业家</span></div></td><td class="cate">经营</td><td>海南简晨科技</td><td class="comment">首次新进，经营模拟向。</td></tr>
+        <tr><td><span class="rank">137</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34966668" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">方</div><span>方舟之旅</span></div></td><td class="cate">放置挂机</td><td>海南梦境科技</td><td class="comment">放置新进，单日 ↑44。</td></tr>
+        <tr><td><span class="rank">138</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34966782" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">三</div><span>三国志幻想大陆</span></div></td><td class="cate">三国/卡牌</td><td>广州龙畅网络</td><td class="comment">三国卡牌新面孔。</td></tr>
+        <tr><td><span class="rank">139</span></td><td><div class="gcell"><div class="fb show">闪</div><span>闪电冲线</span></div></td><td class="cate">回合战斗</td><td>成都星澜创智</td><td class="comment">回合战斗新进。</td></tr>
+        <tr><td><span class="rank again">140</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34962988" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">零</div><span>零日指令</span></div></td><td class="cate">仙侠/经营</td><td>广州云山意象</td><td class="comment">仙侠经营再次入榜。</td></tr>
+        <tr><td><span class="rank again">145</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34963073" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">雷</div><span>雷霆烈焰</span></div></td><td class="cate">传奇/MMORPG</td><td>玩心</td><td class="comment">传奇 MMORPG 回榜。</td></tr>
+        <tr><td><span class="rank">152</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34965811" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">全</div><span>全民爆梗王</span></div></td><td class="cate">益智</td><td>广州双百</td><td class="comment">益智新进。</td></tr>
+        <tr><td><span class="rank">153</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34966553" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">单</div><span>单挑排球</span></div></td><td class="cate">—</td><td>武汉爱物极物</td><td class="comment">体育向新面孔。</td></tr>
+        <tr><td><span class="rank again">157</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34813116" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">无</div><span>无厘头大挑战</span></div></td><td class="cate">益智</td><td>广州双百</td><td class="comment">益智回榜。</td></tr>
+        <tr><td><span class="rank">162</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34952416" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">经</div><span>经营流水线</span></div></td><td class="cate">休闲</td><td>海南简晨科技</td><td class="comment">经营休闲新进。</td></tr>
+        <tr><td><span class="rank">163</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34963114" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">逍</div><span>逍遥志</span></div></td><td class="cate">仙侠/放置</td><td>上海呦鹿网络</td><td class="comment">仙侠放置新面孔。</td></tr>
+        <tr><td><span class="rank">166</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34963444" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">斗</div><span>斗破苍穹：斗帝之路</span></div></td><td class="cate">仙侠/动作</td><td>三七集团</td><td class="comment">IP 动作新进，抖音侧新榜。</td></tr>
+        <tr><td><span class="rank again">171</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34812545" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">时</div><span>时光杂货店</span></div></td><td class="cate">经营</td><td>三七集团</td><td class="comment">三七经营向回榜。</td></tr>
+        <tr><td><span class="rank again">172</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34816232" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">熹</div><span>熹妃传</span></div></td><td class="cate">宫廷/卡牌</td><td>苏州好玩友</td><td class="comment">宫廷女性向回榜。</td></tr>
+        <tr><td><span class="rank first">174</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34965048" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">小</div><span>小镇派对</span></div></td><td class="cate">二合</td><td>上海趣滋滋</td><td class="comment">首次新进，二合细分新供给。</td></tr>
+        <tr><td><span class="rank again">175</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34962434" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">古</div><span>古龙群侠录</span></div></td><td class="cate">武侠/回合制</td><td>恺英网络</td><td class="comment">武侠 IP 回合制回榜。</td></tr>
+        <tr><td><span class="rank first">178</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34966480" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">我</div><span>我要考眼力</span></div></td><td class="cate">—</td><td>上海密幂科技</td><td class="comment">首次新进，找茬/眼力向。</td></tr>
+        <tr><td><span class="rank again">182</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34942359" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">咻</div><span>咻咻大冒险</span></div></td><td class="cate">仙侠/放置</td><td>江西菲凯</td><td class="comment">放置回榜。</td></tr>
+        <tr><td><span class="rank">184</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34964265" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">小</div><span>小岛有晴天</span></div></td><td class="cate">—</td><td>微派</td><td class="comment">微派系新面孔。</td></tr>
+        <tr><td><span class="rank again">187</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34812593" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">梦</div><span>梦幻旅行</span></div></td><td class="cate">二合</td><td>柠檬微趣</td><td class="comment">柠檬微趣二合回榜。</td></tr>
+        <tr><td><span class="rank">188</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34964246" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">战</div><span>战备小队</span></div></td><td class="cate">—</td><td>长沙湘辰互动</td><td class="comment">新面孔。</td></tr>
+        <tr><td><span class="rank again">190</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34963929" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">三</div><span>三国：天下归心</span></div></td><td class="cate">三国/策略</td><td>上饶越昶网络</td><td class="comment">三国策略回榜。</td></tr>
+        <tr><td><span class="rank">193</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34965410" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">我</div><span>我来养你</span></div></td><td class="cate">消除</td><td>北京途悦科技</td><td class="comment">消除新进。</td></tr>
+        <tr><td><span class="rank">194</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34812585" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">主</div><span>主宰世界</span></div></td><td class="cate">仙侠/放置</td><td>4399系</td><td class="comment">放置新面孔。</td></tr>
+        <tr><td><span class="rank again">196</span></td><td><div class="gcell"><div class="fb show">全</div><span>全民烧脑大师</span></div></td><td class="cate">益智</td><td>广州小贝科技</td><td class="comment">益智回榜。</td></tr>
+        <tr><td><span class="rank">197</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34964223" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">解</div><span>解个毛线</span></div></td><td class="cate">消除</td><td>广州池骋网络</td><td class="comment">消除新进。</td></tr>
+        <tr><td><span class="rank">198</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34882387" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">援</div><span>援军来了</span></div></td><td class="cate">战争/塔防</td><td>上海炎魔网络</td><td class="comment">塔防新面孔。</td></tr>
+        <tr><td><span class="rank">199</span></td><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=dy_minigame&app=34823081" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">怪</div><span>怪兽盟约</span></div></td><td class="cate">仙侠/塔防</td><td>深圳游世界</td><td class="comment">塔防新面孔。</td></tr>
       </tbody>
     </table>
   </section>
 
   <!-- 三、素材榜 -->
-  <section class="block">
+  <section class="block" id="materials">
     <h2><span class="idx">3</span>广告素材榜（按品类）</h2>
     <div class="desc">买量素材活跃游戏（素材榜 total / light），按品类整理，标注开发商与当前畅销榜成绩。</div>
 
@@ -222,14 +237,14 @@
       <table>
         <thead><tr><th>游戏</th><th>品类</th><th>开发商</th><th>素材榜(总)</th><th>素材分</th><th>畅销榜成绩</th></tr></thead>
         <tbody>
-          <tr><td>肥鹅美食街</td><td class="cate">二合</td><td>豪腾嘉科</td><td class="grade">第12</td><td>84</td><td>微信第22 · 抖音第8</td></tr>
-          <tr><td>浪漫餐厅</td><td class="cate">二合</td><td>柠檬微趣</td><td class="grade">第18</td><td>77</td><td>微信第7 · 抖音第9</td></tr>
-          <tr><td>向往的生活</td><td class="cate">二合</td><td>深圳必凡</td><td class="grade">第34</td><td>73</td><td>微信第10 · 抖音第10</td></tr>
-          <tr><td>梦幻消除战</td><td class="cate">二合</td><td>喜扑游戏</td><td class="grade">light第33</td><td>74</td><td>抖音第7 · 微信第9</td></tr>
-          <tr><td>开心消消乐</td><td class="cate">消除</td><td>乐元素</td><td class="grade">light第22</td><td>79</td><td>iOS第8 · 微信第31</td></tr>
-          <tr><td>吃碰大消除</td><td class="cate">消除</td><td>厦门登游</td><td class="grade">light第18</td><td>79</td><td>抖音第47</td></tr>
-          <tr><td>真消不过你</td><td class="cate">消除</td><td>广州小贝</td><td class="grade">light第26</td><td>77</td><td>抖音第66</td></tr>
-          <tr><td>不按套路消</td><td class="cate">消除</td><td>海南乐果互娱</td><td class="grade">light第27</td><td>76</td><td>—</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=1348616" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">肥</div><span>肥鹅美食街</span></div></td><td class="cate">二合</td><td>豪腾嘉科</td><td class="grade">第12</td><td>84</td><td>微信第22 · 抖音第8</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=139416" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">浪</div><span>浪漫餐厅</span></div></td><td class="cate">二合</td><td>柠檬微趣</td><td class="grade">第18</td><td>77</td><td>微信第7 · 抖音第9</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=382163" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">向</div><span>向往的生活</span></div></td><td class="cate">二合</td><td>深圳必凡</td><td class="grade">第34</td><td>73</td><td>微信第10 · 抖音第10</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=811910" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">梦</div><span>梦幻消除战</span></div></td><td class="cate">二合</td><td>喜扑游戏</td><td class="grade">light第33</td><td>74</td><td>抖音第7 · 微信第9</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=729" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">开</div><span>开心消消乐</span></div></td><td class="cate">消除</td><td>乐元素</td><td class="grade">light第22</td><td>79</td><td>iOS第8 · 微信第31</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=847186" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">吃</div><span>吃碰大消除</span></div></td><td class="cate">消除</td><td>厦门登游</td><td class="grade">light第18</td><td>79</td><td>抖音第47</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=1410918" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">真</div><span>真消不过你</span></div></td><td class="cate">消除</td><td>广州小贝</td><td class="grade">light第26</td><td>77</td><td>抖音第66</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=1379070" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">不</div><span>不按套路消</span></div></td><td class="cate">消除</td><td>海南乐果互娱</td><td class="grade">light第27</td><td>76</td><td>—</td></tr>
         </tbody>
       </table>
     </div>
@@ -239,9 +254,9 @@
       <table>
         <thead><tr><th>游戏</th><th>品类</th><th>开发商</th><th>素材榜(总)</th><th>素材分</th><th>畅销榜成绩</th></tr></thead>
         <tbody>
-          <tr><td>我的花园世界</td><td class="cate">女性经营</td><td>厦门摩多</td><td class="grade">第9</td><td>89</td><td>微信第3 · 抖音第3</td></tr>
-          <tr><td>时尚百货城</td><td class="cate">女性经营</td><td>爱的番茄</td><td class="grade">第25</td><td>75</td><td>微信第48 · 抖音第11</td></tr>
-          <tr><td>山海有花田</td><td class="cate">经营</td><td>—</td><td class="grade">第50</td><td>70</td><td>—</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=841876" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">我</div><span>我的花园世界</span></div></td><td class="cate">女性经营</td><td>厦门摩多</td><td class="grade">第9</td><td>89</td><td>微信第3 · 抖音第3</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=1345104" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">时</div><span>时尚百货城</span></div></td><td class="cate">女性经营</td><td>爱的番茄</td><td class="grade">第25</td><td>75</td><td>微信第48 · 抖音第11</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=1443040" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">山</div><span>山海有花田</span></div></td><td class="cate">经营</td><td>—</td><td class="grade">第50</td><td>70</td><td>—</td></tr>
         </tbody>
       </table>
     </div>
@@ -251,12 +266,12 @@
       <table>
         <thead><tr><th>游戏</th><th>品类</th><th>开发商</th><th>素材榜(总)</th><th>素材分</th><th>畅销榜成绩</th></tr></thead>
         <tbody>
-          <tr><td>疯狂水世界</td><td class="cate">策略</td><td>益世界</td><td class="grade">第7</td><td>92</td><td>抖音第1 · 微信第11</td></tr>
-          <tr><td>向僵尸开炮</td><td class="cate">塔防</td><td>大梦龙途</td><td class="grade">第14</td><td>79</td><td>微信第2 · 抖音第4</td></tr>
-          <tr><td>永远的蔚蓝星球</td><td class="cate">塔防</td><td>9377系</td><td class="grade">第8</td><td>92</td><td>微信第34 · 抖音第56</td></tr>
-          <tr><td>指尖幻影</td><td class="cate">塔防</td><td>乘游科技</td><td class="grade">第19</td><td>77</td><td>抖音第20 · 微信第81</td></tr>
-          <tr><td>向末日开炮</td><td class="cate">策略</td><td>大梦龙途</td><td class="grade">第15</td><td>78</td><td>微信第4 · iOS第30</td></tr>
-          <tr><td>三国：冰河时代</td><td class="cate">策略</td><td>途游</td><td class="grade">第20</td><td>76</td><td>微信第1 · 抖音第18</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=857376" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">疯</div><span>疯狂水世界</span></div></td><td class="cate">策略</td><td>益世界</td><td class="grade">第7</td><td>92</td><td>抖音第1 · 微信第11</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=120445" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">向</div><span>向僵尸开炮</span></div></td><td class="cate">塔防</td><td>大梦龙途</td><td class="grade">第14</td><td>79</td><td>微信第2 · 抖音第4</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=157720" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">永</div><span>永远的蔚蓝星球</span></div></td><td class="cate">塔防</td><td>9377系</td><td class="grade">第8</td><td>92</td><td>微信第34 · 抖音第56</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=413121" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">指</div><span>指尖幻影</span></div></td><td class="cate">塔防</td><td>乘游科技</td><td class="grade">第19</td><td>77</td><td>抖音第20 · 微信第81</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=838629" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">向</div><span>向末日开炮</span></div></td><td class="cate">策略</td><td>大梦龙途</td><td class="grade">第15</td><td>78</td><td>微信第4 · iOS第30</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=313060" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">三</div><span>三国：冰河时代</span></div></td><td class="cate">策略</td><td>途游</td><td class="grade">第20</td><td>76</td><td>微信第1 · 抖音第18</td></tr>
         </tbody>
       </table>
     </div>
@@ -266,10 +281,10 @@
       <table>
         <thead><tr><th>游戏</th><th>品类</th><th>开发商</th><th>素材榜(总)</th><th>素材分</th><th>畅销榜成绩</th></tr></thead>
         <tbody>
-          <tr><td>金禧流年</td><td class="cate">网赚</td><td>—</td><td class="grade">第16</td><td>78</td><td>—</td></tr>
-          <tr><td>金玉满仓</td><td class="cate">网赚</td><td>—</td><td class="grade">第17</td><td>77</td><td>—</td></tr>
-          <tr><td>鱼乐达人</td><td class="cate">捕鱼</td><td>游酷盛世</td><td class="grade">第10</td><td>86</td><td>iOS第27</td></tr>
-          <tr><td>会玩</td><td class="cate">桌游</td><td>武汉微派</td><td class="grade">第49</td><td>70</td><td>—</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=1424261" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">金</div><span>金禧流年</span></div></td><td class="cate">网赚</td><td>—</td><td class="grade">第16</td><td>78</td><td>—</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=843202" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">金</div><span>金玉满仓</span></div></td><td class="cate">网赚</td><td>—</td><td class="grade">第17</td><td>77</td><td>—</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=903" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">鱼</div><span>鱼乐达人</span></div></td><td class="cate">捕鱼</td><td>游酷盛世</td><td class="grade">第10</td><td>86</td><td>iOS第27</td></tr>
+          <tr><td><div class="gcell"><img src="https://ai.xianjianwendao.com/kb/imgproxy?platform=buy_material&app=16842" alt="" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')"><div class="fb">会</div><span>会玩</span></div></td><td class="cate">桌游</td><td>武汉微派</td><td class="grade">第49</td><td>70</td><td>—</td></tr>
         </tbody>
       </table>
     </div>
@@ -277,5 +292,13 @@
 
   <footer>数据来源：游研所 MCP（榜单快照 · 文章检索）｜ 更新频率：每日自动｜ 本页仅呈现原始绝对值与榜单名次，不下判断</footer>
 </div>
+<script>
+  document.querySelectorAll('nav.top a.nav-link').forEach(function(a){
+    a.addEventListener('click',function(){
+      document.querySelectorAll('nav.top a.nav-link').forEach(function(x){x.classList.remove('on')});
+      this.classList.add('on');
+    });
+  });
+</script>
 </body>
 </html>
